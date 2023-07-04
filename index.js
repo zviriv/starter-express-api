@@ -14,14 +14,11 @@ app.use(function (req, res, next) {
 }); 
 
 app.post('/', async (req, res) => {
-    //console.log('data', req.data);
-    //console.log('params', req.params);
     let body = req.body;
-    console.log('body', req.body);
-    //console.log('payload', req.payload);
-    //console.log('req', req);
+    console.log('body', body);
 
     if(!body.url) res.send('{"error":"missing url"}'); return;
+    console.log('url', body.url);
     
     let data = await axios({
         url: body.url,
