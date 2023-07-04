@@ -13,6 +13,7 @@ app.use(function (req, res, next) {
 app.all('/', (req, res) => {
     console.log('data', req.data);
     console.log('params', req.params);
+    console.log('body', req.body);
     
     res.send('Yo!');
 });
