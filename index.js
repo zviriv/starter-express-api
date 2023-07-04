@@ -28,6 +28,7 @@ app.post('/', async (req, res) => {
         method: body.method || 'get',
         responseType: body.responseType || 'json'
     });
+    console.log(data);
 
     if(body.responseType === 'arraybuffer')
         res.send(data.data.toString('base64'));
