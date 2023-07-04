@@ -14,11 +14,11 @@ app.use(function (req, res, next) {
 }); 
 
 app.all('/', (req, res) => {
-    console.log('data', req.data);
-    console.log('params', req.params);
+    //console.log('data', req.data);
+    //console.log('params', req.params);
     console.log('body', req.body);
-    console.log('payload', req.payload);
-    console.log('req', req);
+    //console.log('payload', req.payload);
+    //console.log('req', req);
     
     res.send('Yo!');
 });
