@@ -19,14 +19,14 @@ app.post('/', async (req, res) => {
 
     if(!body.url) { res.send('{"error":"missing url"}'); return; }
     console.log('url', body.url || 'missing body.url');
- /*   
+  
     let data = await axios({
         url: body.url,
         method: body.method || 'get',
         responseType: body.responseType || 'json'
     });
     console.log(data);
-
+/*  
     if(body.responseType === 'arraybuffer')
         res.send(data.data.toString('base64'));
     else
