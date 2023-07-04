@@ -26,12 +26,12 @@ app.post('/', async (req, res) => {
         responseType: body.responseType || 'json'
     });
     console.log(data);
-
+/*
     if(body.responseType === 'arraybuffer')
         res.send(data.data.toString('base64'));
     else
         res.send(data.data);
-    
-    //res.send('Yo!');
+  */  
+    res.send('Yo!');
 });
 app.listen(process.env.PORT || 3000);
