@@ -11,7 +11,8 @@ app.use(function (req, res, next) {
 }); 
 
 app.all('/', (req, res) => {
-    console.log(req);
+    console.log('data', req.data);
+    console.log('params', req.params);
     
     res.send('Yo!');
 });
