@@ -16,10 +16,24 @@ app.use(function (req, res, next) {
 app.post('/', async (req, res) => {
     //console.log('data', req.data);
     //console.log('params', req.params);
+    let body = req.body;
     console.log('body', req.body);
     //console.log('payload', req.payload);
     //console.log('req', req);
+
+    if(!body.url) res.send('{"error":"missing url"}'); return;
     
-    res.send('Yo!');
+    let data = await axios({
+        url: body.url,
+        method: body.method || 'get',
+        responseType: body.responseType || 'json'
+    });
+
+    if(body.responseType === 'arraybuffer')
+        res.send(data.data.toString('base64'));
+    else
+        res.send(data.data);
+    
+    //res.send('Yo!');
 });
 app.listen(process.env.PORT || 3000);
