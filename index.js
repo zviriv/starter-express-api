@@ -13,7 +13,7 @@ app.use(function (req, res, next) {
     next();
 }); 
 
-app.all('/', (req, res) => {
+app.post('/', async (req, res) => {
     //console.log('data', req.data);
     //console.log('params', req.params);
     console.log('body', req.body);
