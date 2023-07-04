@@ -18,7 +18,7 @@ app.post('/', async (req, res) => {
     console.log('body', body);
 
     if(!body.url) res.send('{"error":"missing url"}'); return;
-    console.log('url', body.url);
+    console.log('url', body.url || 'missing body.url');
  /*   
     let data = await axios({
         url: body.url,
