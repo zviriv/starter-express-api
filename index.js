@@ -13,7 +13,7 @@ app.use(function (req, res, next) {
     next();
 }); 
 
-app.post('/', async (req, res) => {
+app.post('/proxy/', async (req, res) => {
     let body = req.body;
     //console.log('body', body);
 
