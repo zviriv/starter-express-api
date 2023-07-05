@@ -15,9 +15,9 @@ app.use(function (req, res, next) {
 
 app.post('/proxy/', async (req, res) => {
     let body = req.body;
-    //console.log('body', body);
+    console.log('body', body);
 
-    console.log('url', body.url || 'missing body.url');
+    //console.log('url', body.url || 'missing body.url');
     if(!body.url) { res.send('{"error":"missing url"}'); return; }    
   
     let data = await axios({
