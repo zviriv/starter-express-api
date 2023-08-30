@@ -19,14 +19,16 @@ app.post('/proxy/', async (req, res) => {
 
     //console.log('url', body.url || 'missing body.url');
     if(!body.url) { res.send('{"error":"missing url"}'); return; }    
-  
-    let data = await axios({
-        url: body.url,
-        method: body.method || 'get',
-        responseType: body.responseType || 'json'
-    });
-    console.log(data);
 
+    try{
+        let data = await axios({
+            url: body.url,
+            method: body.method || 'get',
+            responseType: body.responseType || 'json'
+        });
+        console.log('data', data);
+    } catch(ex){ console.log('axios fetch error: ' + ex); }
+    
     if(!data) { res.send('{"error":"no data"}'); return; }    
     
     if(body.responseType === 'arraybuffer')
