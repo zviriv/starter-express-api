@@ -15,23 +15,41 @@ app.use(function (req, res, next) {
 
 
 app.get('/oref', async (req, res) => {
-    let config = {
-      method: 'get',
-      maxBodyLength: Infinity,
-      url: 'https://www.oref.org.il/WarningMessages/alert/alerts.json',
-      headers: { 
-        'Referer': 'https://www.oref.org.il/12481-he/Pakar.aspx', 
+    
+    const https = require('follow-redirects').https;
+    const fs = require('fs');
+    
+    let options = {
+      'method': 'GET',
+      'hostname': 'www.oref.org.il',
+      'path': '/WarningMessages/alert/alerts.json',
+      'headers': {
+        'Referer': 'https://www.oref.org.il/12481-he/Pakar.aspx',
         'X-Requested-With': 'XMLHttpRequest'
-      }
+      },
+      'maxRedirects': 20
     };
+    
+    const req = https.request(options, (res) => {
+      let chunks = [];
+    
+      res.on("data", (chunk) => {
+        chunks.push(chunk);
+      });
+    
+      res.on("end", (chunk) => {
+        let body = Buffer.concat(chunks);
+        console.log(body.toString());
+      });
+    
+      res.on("error", (error) => {
+        console.error(error);
+      });
+    });
+    
+    req.end();
 
-    try {
-        res.send( await axios.request(config) ); return;
-    }
-    catch (err) {
-        console.log(err);
-        res.send(`{"error": "${err}"}`); return;
-    }
+    
 });
 app.post('/proxy/', async (req, res) => {
     let body = req.body;
