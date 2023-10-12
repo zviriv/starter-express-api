@@ -14,43 +14,6 @@ app.use(function (req, res, next) {
 }); 
 
 
-app.get('/oref', async (req, res) => {
-    
-    const https = require('follow-redirects').https;
-    const fs = require('fs');
-    
-    let options = {
-      'method': 'GET',
-      'hostname': 'www.oref.org.il',
-      'path': '/WarningMessages/alert/alerts.json',
-      'headers': {
-        'Referer': 'https://www.oref.org.il/12481-he/Pakar.aspx',
-        'X-Requested-With': 'XMLHttpRequest'
-      },
-      'maxRedirects': 20
-    };
-    
-    const _req = https.request(options, (res) => {
-      let chunks = [];
-    
-      res.on("data", (chunk) => {
-        chunks.push(chunk);
-      });
-    
-      res.on("end", (chunk) => {
-        let body = Buffer.concat(chunks);
-        console.log(body.toString());
-      });
-    
-      res.on("error", (error) => {
-        console.error(error);
-      });
-    });
-    
-    _req.end();
-
-    
-});
 app.post('/proxy/', async (req, res) => {
     let body = req.body;
     console.log('body', body);
