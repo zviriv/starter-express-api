@@ -30,7 +30,7 @@ app.get('/oref', async (req, res) => {
       'maxRedirects': 20
     };
     
-    const req = https.request(options, (res) => {
+    const _req = https.request(options, (res) => {
       let chunks = [];
     
       res.on("data", (chunk) => {
@@ -47,7 +47,7 @@ app.get('/oref', async (req, res) => {
       });
     });
     
-    req.end();
+    _req.end();
 
     
 });
