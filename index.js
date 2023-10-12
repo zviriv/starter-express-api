@@ -25,6 +25,7 @@ app.post('/proxy/', async (req, res) => {
         data = await axios({
             url: body.url,
             method: body.method || 'get',
+            headers: body.headers || {},
             responseType: body.responseType || 'json'
         });
         console.log('data', data);
